@@ -50,15 +50,19 @@
         const EDU_CODE = 'J10'; // 경기도교육청
         const SCH_CODE = '7531167'; // 송양고등학교
         
-        // 1. 오늘 날짜 구하기 (시간 상관없이 연월일만 추출)
+        // 날짜 및 요일 계산
         const now = new Date();
         const year = now.getFullYear();
         const month = ('0' + (now.getMonth() + 1)).slice(-2);
         const day = ('0' + now.getDate()).slice(-2);
-        const dateStr = `${year}${month}${day}`; // 예: 20251204
+        const dateStr = `${year}${month}${day}`;
 
-        // 화면에 날짜 표시 (예: 12월 4일)
-        document.getElementById('date-display').innerText = `${now.getMonth() + 1}월 ${now.getDate()}일`;
+        // [수정된 부분] 요일 배열 추가 및 표시 형식 변경
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+        const dayOfWeek = days[now.getDay()];
+        
+        // 예: "12월 4일(목)" 형태로 표시
+        document.getElementById('date-display').innerText = `${now.getMonth() + 1}월 ${now.getDate()}일(${dayOfWeek})`;
 
         // 2. API 주소 생성
         // 핵심: &MMEAL_SC_CODE=2 (이 부분이 '중식'만 가져오게 하는 코드입니다)
